@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const img = (file) => `${process.env.PUBLIC_URL}/img/${file}`;
 
-const homes = [
+export const homes = [
   { id: 1, name: "오션뷰", desc: "해변 근처", price: "₩100,000", image: img("4e5b10d3-eaa3-4c2b-a9b2-27d3ce0a7750.webp"), category: "beach" },
   { id: 2, name: "제주 귤 별장", desc: "자연경 휴식", price: "₩120,000", image: img("f3a2e782-32b6-47d0-8f26-ca966b4fa818.avif"), category: "mountain" },
   { id: 3, name: "화이트", desc: "심플 깔끔", price: "₩90,000", image: img("ee938f37-312d-4220-8850-d424e96890a5.avif"), category: "city" },

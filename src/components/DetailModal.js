@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "../css/DetailModal.css";
 import { isLoggedIn as getLogin } from "../utils/auth";
-
+import { homes } from "./Homes";
 export default function DetailModal() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -10,11 +10,13 @@ export default function DetailModal() {
   const close = () => navigate(-1);
   const closeBtnRef = useRef(null);
 
-  // Homes에서 넘긴 데이터
+  // Homes에서 넘긴 데이터 또는 직접 접근 시 fallback
   const item = useMemo(() => {
     const fromState = location.state && location.state.item;
     if (fromState && String(fromState.id) === String(id)) return fromState;
-    return null;
+    // 브라우저 새로고침 시 state 유실에 대비한 Fallback
+    const fallbackItem = homes.find(h => String(h.id) === String(id));
+    return fallbackItem || null;
   }, [location.state, id]);
 
   const [tab, setTab] = useState("details"); // details | map | images
